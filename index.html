@@ -16,6 +16,21 @@
     .zen-dots {
       font-family: 'Zen Dots', sans-serif;
     }
+    .carousel {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+    .carousel-track {
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+    .carousel-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: center center -500px;
+      backface-visibility: hidden;
+    }
   </style>
 </head>
 <body class="text-white bg-black garamond">
@@ -38,17 +53,30 @@
     <a href="#como" class="absolute bottom-10 text-blue-400 hover:underline text-lg">↓ Cómo se hizo</a>
   </section>
 
-  <!-- Cómo se hizo -->
+  <!-- Cómo se hizo (Carrusel en noria) -->
   <section id="como" class="py-20 px-6 bg-gray-950">
     <h2 class="text-3xl font-bold text-center mb-10">Cómo se hizo</h2>
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-      <img src="fotos/como/bb8_01.jpg" alt="Paso 1" class="rounded-lg" />
-      <img src="fotos/como/bb8_02.jpg" alt="Paso 2" class="rounded-lg" />
-      <img src="fotos/como/bb8_03.jpg" alt="Paso 3" class="rounded-lg" />
+    <div class="relative w-full h-[500px] max-w-4xl mx-auto carousel">
+      <div class="carousel-track relative w-full h-full" id="carouselTrack">
+        <img src="fotos/como/bb8_01.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(0deg) translateZ(500px);" />
+        <img src="fotos/como/bb8_02.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(60deg) translateZ(500px);" />
+        <img src="fotos/como/bb8_03.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(120deg) translateZ(500px);" />
+        <img src="fotos/como/bb8_04.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(180deg) translateZ(500px);" />
+        <img src="fotos/como/bb8_05.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(240deg) translateZ(500px);" />
+        <img src="fotos/como/bb8_06.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(300deg) translateZ(500px);" />
+      </div>
     </div>
-    <p class="mt-8 max-w-3xl mx-auto text-center text-lg">
+    <p class="mt-10 max-w-3xl mx-auto text-center text-lg">
       Aquí iría un texto explicativo del proceso de construcción. Puedes contar cómo nació la idea, los materiales, dificultades y curiosidades.
     </p>
+    <script>
+      const track = document.getElementById('carouselTrack');
+      let angle = 0;
+      window.addEventListener('wheel', (e) => {
+        angle += e.deltaY > 0 ? 60 : -60;
+        track.style.transform = `rotateY(${angle}deg)`;
+      });
+    </script>
   </section>
 
   <!-- Astrofotografía -->
