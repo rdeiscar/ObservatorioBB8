@@ -22,14 +22,24 @@
     }
     .carousel-track {
       transform-style: preserve-3d;
-      transition: transform 1s;
+      transition: transform 1s ease;
+      height: 400px;
+      width: 400px;
+      margin: 0 auto;
+      position: relative;
     }
     .carousel-item {
       position: absolute;
-      top: 0;
-      left: 0;
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      top: 50%;
+      left: 50%;
       transform-origin: center center -500px;
       backface-visibility: hidden;
+      transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(500px);
+      border-radius: 1rem;
+      box-shadow: 0 0 10px #000;
     }
   </style>
 </head>
@@ -53,27 +63,44 @@
     <a href="#como" class="absolute bottom-10 text-blue-400 hover:underline text-lg">↓ Cómo se hizo</a>
   </section>
 
-  <!-- Cómo se hizo (Carrusel en noria) -->
-  <section id="como" class="py-20 px-6 bg-gray-950">
+  <!-- Cómo se hizo (Carrusel en noria ajustado) -->
+  <section id="como" class="py-40 px-6 bg-gray-950">
     <h2 class="text-3xl font-bold text-center mb-10">Cómo se hizo</h2>
-    <div class="relative w-full h-[500px] max-w-4xl mx-auto carousel">
-      <div class="carousel-track relative w-full h-full" id="carouselTrack">
-        <img src="fotos/como/bb8_01.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(0deg) translateZ(500px);" />
-        <img src="fotos/como/bb8_02.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(60deg) translateZ(500px);" />
-        <img src="fotos/como/bb8_03.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(120deg) translateZ(500px);" />
-        <img src="fotos/como/bb8_04.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(180deg) translateZ(500px);" />
-        <img src="fotos/como/bb8_05.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(240deg) translateZ(500px);" />
-        <img src="fotos/como/bb8_06.jpg" class="carousel-item w-full h-full object-contain rounded-lg" style="transform: rotateY(300deg) translateZ(500px);" />
+    <div class="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Se generarán dinámicamente 13 imágenes -->
       </div>
     </div>
-    <p class="mt-10 max-w-3xl mx-auto text-center text-lg">
+    <p class="mt-16 max-w-3xl mx-auto text-center text-lg">
       Aquí iría un texto explicativo del proceso de construcción. Puedes contar cómo nació la idea, los materiales, dificultades y curiosidades.
     </p>
     <script>
       const track = document.getElementById('carouselTrack');
+      const numImages = 13;
+      const angleStep = 360 / numImages;
+
+      for (let i = 0; i < numImages; i++) {
+        const img = document.createElement('img');
+        img.src = `fotos/como/bb8_${String(i + 1).padStart(2, '0')}.jpg`;
+        img.className = 'carousel-item';
+        img.style.setProperty('--angle', `${i * angleStep}deg`);
+        track.appendChild(img);
+      }
+
       let angle = 0;
+      let isInCarousel = false;
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          isInCarousel = entry.isIntersecting;
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(track);
+
       window.addEventListener('wheel', (e) => {
-        angle += e.deltaY > 0 ? 60 : -60;
+        if (!isInCarousel) return;
+        angle += e.deltaY > 0 ? angleStep : -angleStep;
         track.style.transform = `rotateY(${angle}deg)`;
       });
     </script>
