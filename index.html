@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Observatorio BB8 - Cebolla</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Zen+Dots&display=swap" rel="stylesheet">
   <style>
     html {
       scroll-behavior: smooth;
@@ -13,15 +13,18 @@
     .garamond {
       font-family: 'EB Garamond', serif;
     }
+    .zen-dots {
+      font-family: 'Zen Dots', sans-serif;
+    }
   </style>
 </head>
 <body class="text-white bg-black garamond">
 
   <!-- Hero / Portada -->
-  <section class="h-screen bg-fixed bg-cover bg-center flex items-center justify-center" style="background-image: url('fondo.jpg');">
+  <section class="min-h-screen bg-fixed bg-center bg-no-repeat bg-contain flex items-center justify-center" style="background-image: url('fondo.jpg');">
     <div class="bg-black bg-opacity-60 p-10 rounded-xl max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="flex items-center justify-center">
-        <h1 class="text-5xl font-bold text-left">Observatorio astronómico BB8</h1>
+        <h1 class="text-5xl zen-dots text-left">Observatorio astronómico BB8</h1>
       </div>
       <div class="bg-gray-800 bg-opacity-60 p-6 rounded-lg text-lg leading-relaxed">
         <p>
@@ -36,10 +39,9 @@
   </section>
 
   <!-- Cómo se hizo -->
-  <section id="como" class="py-20 px-6 bg-gray-900">
+  <section id="como" class="py-20 px-6 bg-gray-950">
     <h2 class="text-3xl font-bold text-center mb-10">Cómo se hizo</h2>
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- Sustituye estas URLs por tus fotos -->
       <img src="fotos/como/bb8_01.jpg" alt="Paso 1" class="rounded-lg" />
       <img src="fotos/como/bb8_02.jpg" alt="Paso 2" class="rounded-lg" />
       <img src="fotos/como/bb8_03.jpg" alt="Paso 3" class="rounded-lg" />
@@ -53,7 +55,6 @@
   <section id="astro" class="py-20 px-6 bg-black">
     <h2 class="text-3xl font-bold text-center mb-10">Astrofotografía</h2>
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- Aquí irás añadiendo fotos futuras -->
       <img src="fotos/astro/saturno_20240621.jpg" alt="Saturno 21 junio" class="rounded-lg opacity-90" />
     </div>
   </section>
