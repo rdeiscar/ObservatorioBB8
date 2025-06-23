@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Observatorio BB8 - Cebolla</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
   <style>
     html {
       scroll-behavior: smooth;
     }
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-    .orbitron {
-      font-family: 'Orbitron', sans-serif;
+    .garamond {
+      font-family: 'EB Garamond', serif;
     }
   </style>
 </head>
-<body class="text-white bg-black">
+<body class="text-white bg-black garamond">
 
   <!-- Hero / Portada -->
-  <section class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Milky_Way_Night_Sky_Black_Rock_Desert_Nevada.jpg');">
+  <section class="h-screen bg-fixed bg-cover bg-center flex items-center justify-center" style="background-image: url('fondo.jpg');">
     <div class="bg-black bg-opacity-60 p-10 rounded-xl max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="flex items-center justify-center">
-        <h1 class="text-5xl font-bold orbitron text-left">Observatorio astronómico BB8</h1>
+        <h1 class="text-5xl font-bold text-left">Observatorio astronómico BB8</h1>
       </div>
       <div class="bg-gray-800 bg-opacity-60 p-6 rounded-lg text-lg leading-relaxed">
         <p>
@@ -40,9 +40,9 @@
     <h2 class="text-3xl font-bold text-center mb-10">Cómo se hizo</h2>
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
       <!-- Sustituye estas URLs por tus fotos -->
-      <img src="https://via.placeholder.com/400x300" alt="Paso 1" class="rounded-lg" />
-      <img src="https://via.placeholder.com/400x300" alt="Paso 2" class="rounded-lg" />
-      <img src="https://via.placeholder.com/400x300" alt="Paso 3" class="rounded-lg" />
+      <img src="fotos/como/bb8_01.jpg" alt="Paso 1" class="rounded-lg" />
+      <img src="fotos/como/bb8_02.jpg" alt="Paso 2" class="rounded-lg" />
+      <img src="fotos/como/bb8_03.jpg" alt="Paso 3" class="rounded-lg" />
     </div>
     <p class="mt-8 max-w-3xl mx-auto text-center text-lg">
       Aquí iría un texto explicativo del proceso de construcción. Puedes contar cómo nació la idea, los materiales, dificultades y curiosidades.
@@ -54,7 +54,7 @@
     <h2 class="text-3xl font-bold text-center mb-10">Astrofotografía</h2>
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
       <!-- Aquí irás añadiendo fotos futuras -->
-      <img src="https://via.placeholder.com/400x300?text=Pr%C3%B3ximamente" alt="Astrofoto 1" class="rounded-lg opacity-60" />
+      <img src="fotos/astro/saturno_20240621.jpg" alt="Saturno 21 junio" class="rounded-lg opacity-90" />
     </div>
   </section>
 
@@ -65,7 +65,7 @@
   </section>
 
   <footer class="text-center text-sm py-6 bg-gray-900 text-gray-400">
-    © Observatorio BB8 · Cebolla · Hecho con cariño por Rubén de Iscar (Salviati)
+    © Observatorio BB8 · Cebolla · Hecho con cariño por Rubén (Salviati)
   </footer>
 
 </body>
