@@ -19,13 +19,13 @@
     .carousel {
       perspective: 1000px;
       transform-style: preserve-3d;
+      height: 600px;
     }
     .carousel-track {
       transform-style: preserve-3d;
       transition: transform 1s ease;
-      height: 400px;
-      width: 400px;
-      margin: 0 auto;
+      height: 100%;
+      width: 100%;
       position: relative;
     }
     .carousel-item {
@@ -37,10 +37,21 @@
       transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(500px);
       border-radius: 1rem;
       box-shadow: 0 0 10px #000;
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 200px;
+      max-height: 300px;
       width: auto;
       height: auto;
+    }
+    .carousel-buttons {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+      z-index: 10;
     }
   </style>
 </head>
@@ -71,7 +82,7 @@
       <div class="carousel-track" id="carouselTrack">
         <!-- Imágenes dinámicas -->
       </div>
-      <div class="flex justify-center mt-10 gap-6">
+      <div class="carousel-buttons">
         <button id="prevBtn" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-800">← Anterior</button>
         <button id="nextBtn" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-800">Siguiente →</button>
       </div>
