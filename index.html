@@ -17,13 +17,13 @@
       font-family: 'Zen Dots', sans-serif;
     }
     .carousel {
-      perspective: 1000px;
+      perspective: 1200px;
       transform-style: preserve-3d;
-      height: 600px;
+      height: 650px;
     }
     .carousel-track {
       transform-style: preserve-3d;
-      transition: transform 1s ease;
+      transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
       height: 100%;
       width: 100%;
       position: relative;
@@ -42,6 +42,11 @@
       width: auto;
       height: auto;
     }
+    .carousel-caption {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 1.125rem;
+    }
     .carousel-buttons {
       position: absolute;
       bottom: 0;
@@ -52,6 +57,21 @@
       gap: 1.5rem;
       padding-bottom: 1rem;
       z-index: 10;
+    }
+    .galactic-button {
+      background: linear-gradient(90deg, #0ff, #00f, #f0f);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      text-shadow: 0 0 5px #000;
+      box-shadow: 0 0 10px #0ff;
+      transition: all 0.3s ease;
+    }
+    .galactic-button:hover {
+      box-shadow: 0 0 20px #0ff;
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -75,26 +95,43 @@
     <a href="#como" class="absolute bottom-10 text-blue-400 hover:underline text-lg">↓ Cómo se hizo</a>
   </section>
 
-  <!-- Cómo se hizo (Carrusel en noria con botones) -->
+  <!-- Cómo se hizo (Carrusel en noria con botones y texto asociado) -->
   <section id="como" class="py-40 px-6 bg-gray-950">
     <h2 class="text-3xl font-bold text-center mb-10">Cómo se hizo</h2>
     <div class="relative carousel">
-      <div class="carousel-track" id="carouselTrack">
-        <!-- Imágenes dinámicas -->
-      </div>
+      <div class="carousel-track" id="carouselTrack"></div>
       <div class="carousel-buttons">
-        <button id="prevBtn" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-800">← Anterior</button>
-        <button id="nextBtn" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-800">Siguiente →</button>
+        <button id="prevBtn" class="galactic-button">← Anterior</button>
+        <button id="nextBtn" class="galactic-button">Siguiente →</button>
       </div>
     </div>
-    <p class="mt-16 max-w-3xl mx-auto text-center text-lg">
-      Aquí iría un texto explicativo del proceso de construcción. Puedes contar cómo nació la idea, los materiales, dificultades y curiosidades.
-    </p>
+    <p id="carouselCaption" class="carousel-caption text-center mt-10 max-w-3xl mx-auto text-lg"></p>
+
     <script>
       const track = document.getElementById('carouselTrack');
+      const caption = document.getElementById('carouselCaption');
       const numImages = 15;
       const angleStep = 360 / numImages;
       let currentAngle = 0;
+      let currentIndex = 0;
+
+      const captions = [
+        "Qué ilusión empezar!! Calculando tamaños",
+        "El trabajo es duro pero se hace con mucha felicidad",
+        "Tirando de Arquímedes para nivelar",
+        "Va tomando forma el edificio",
+        "Edificio llevado a altura máxima",
+        "Primeros trabajos sobre los triángulos de la cúpula",
+        "Parece que estoy haciendo TIE Fighter",
+        "Montando placas sobre la base de la cúpula",
+        "La cúpula va tomando forma",
+        "Cúpula cerrada",
+        "Abriendo las ventanas",
+        "Cúpula terminada en suelo",
+        "Terminando ventanas",
+        "Gran equipo para subir la cúpula",
+        "Emocionado con el resultado"
+      ];
 
       const images = [];
       for (let i = 0; i < numImages; i++) {
@@ -110,9 +147,11 @@
           const angle = (360 / numImages) * index + currentAngle;
           img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(500px)`;
         });
+        caption.textContent = captions[(currentIndex + numImages) % numImages];
       }
 
       function rotateCarousel(direction) {
+        currentIndex = (currentIndex + direction + numImages) % numImages;
         currentAngle += direction * angleStep;
         updateCarousel();
       }
@@ -149,4 +188,3 @@
 
 </body>
 </html>
-
