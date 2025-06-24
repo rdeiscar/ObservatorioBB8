@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Observatorio BB8 - Cebolla</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Zen+Dots&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Zen+Dots&display=swap" rel="stylesheet" />
   <style>
     html {
       scroll-behavior: smooth;
@@ -14,12 +14,61 @@
       font-family: 'EB Garamond', serif;
     }
     .zen-dots {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: 'Zen Dots', cursive;
     }
+    /* Fondo fijo y responsivo */
+    #fondo {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      object-fit: contain;
+      object-position: center center;
+      z-index: 0;
+      pointer-events: none;
+      background-color: black;
+    }
+    /* Sección presentación */
+    #inicio {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      z-index: 10;
+      color: white;
+    }
+    #inicio > .contenido {
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #inicio h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      font-weight: 900;
+      font-family: 'Zen Dots', cursive;
+      flex: 1 1 300px;
+      margin: 0;
+    }
+    #inicio .texto {
+      flex: 1 1 350px;
+      background-color: rgba(0,0,0,0.8);
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+      font-size: 1.15rem;
+      line-height: 1.5;
+    }
+    /* Carrusel */
     .carousel {
       perspective: 1200px;
       transform-style: preserve-3d;
       height: 650px;
+      position: relative;
+      margin-bottom: 3rem;
     }
     .carousel-track {
       transform-style: preserve-3d;
@@ -42,6 +91,7 @@
       width: auto;
       height: auto;
       transition: transform 1.2s ease-in-out;
+      object-fit: contain;
     }
     .carousel-caption {
       text-align: center;
@@ -50,6 +100,9 @@
       font-weight: bold;
       color: #0ff;
       text-shadow: 0 0 10px #00f;
+      max-width: 90vw;
+      margin-left: auto;
+      margin-right: auto;
     }
     .carousel-buttons {
       position: absolute;
@@ -72,102 +125,126 @@
       text-shadow: 0 0 5px #000;
       box-shadow: 0 0 10px #0ff;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
     .galactic-button:hover {
       box-shadow: 0 0 20px #0ff;
       transform: scale(1.05);
     }
+    /* Secciones Astrofotografía y Contacto */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem auto;
+      color: white;
+    }
+    h2 {
+      font-family: 'Zen Dots', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #0ff;
+      text-shadow: 0 0 8px #00f;
+    }
   </style>
 </head>
 <body class="text-white bg-black garamond">
 
-<!-- Sección de presentación -->
-<section id="inicio" class="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden">
-  <img src="fondo.jpg" class="w-full h-full object-contain object-center fixed top-0 left-0 z-0" alt="Fondo observatorio" />
-  <div class="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-10">
-    <div class="max-w-2xl text-left text-white">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 zen-dots">Observatorio astronómico BB8</h1>
-    </div>
-    <div class="max-w-xl bg-black/80 p-6 rounded-xl shadow-lg text-white text-lg leading-relaxed">
-      <p class="text-lg leading-relaxed">
+  <!-- Imagen fondo fija -->
+  <img id="fondo" src="fondo.jpg" alt="Fondo Observatorio BB8" />
+
+  <!-- Sección presentación -->
+  <section id="inicio">
+    <div class="contenido">
+      <h1>Observatorio astronómico BB8</h1>
+      <div class="texto">
         Bajo el silencio del cielo, un sueño da sus primeras luces. Este observatorio no es solo una estructura: es un homenaje a la curiosidad, a la perseverancia y al asombro infinito que despierta el cosmos. Armado con la tenacidad que solo la pasión puede darnos he podido construirlo con mis propias manos. Te invito a conocer este viaje de luz y sombra, donde la ingeniería DIY se encuentra con la imaginación y el frikismo.
-      </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Sección "Cómo se hizo" insertada correctamente -->
-<section id="como" class="py-40 px-6 bg-gray-950">
-  <h2 class="text-3xl font-bold text-center mb-10">Cómo se hizo</h2>
-  <div class="relative carousel">
-    <div class="carousel-track" id="carouselTrack"></div>
-    <div class="carousel-buttons">
-      <button id="prevBtn" class="galactic-button">← Anterior</button>
-      <button id="nextBtn" class="galactic-button">Siguiente →</button>
+  <!-- Sección Cómo se hizo -->
+  <section id="como" class="bg-gray-950">
+    <h2>Cómo se hizo</h2>
+    <div class="carousel">
+      <div class="carousel-track" id="carouselTrack"></div>
+      <div class="carousel-buttons">
+        <button id="prevBtn" class="galactic-button">← Anterior</button>
+        <button id="nextBtn" class="galactic-button">Siguiente →</button>
+      </div>
     </div>
-  </div>
-  <p id="carouselCaption" class="carousel-caption text-center mt-10 max-w-3xl mx-auto text-lg"></p>
-</section>
+    <p id="carouselCaption" class="carousel-caption"></p>
+  </section>
 
-<script>
-  const track = document.getElementById('carouselTrack');
-  const caption = document.getElementById('carouselCaption');
-  const numImages = 15;
-  const angleStep = 360 / numImages;
-  let currentAngle = 0;
-  let currentIndex = 0;
+  <!-- Sección Astrofotografía -->
+  <section id="astrofotografia">
+    <h2>Astrofotografía</h2>
+    <p>Aquí podrás ir añadiendo tus fotos y resultados de astrofotografía.</p>
+  </section>
 
-  const captions = [
-    "Qué ilusión empezar!! Calculando tamaños",
-    "El trabajo es duro pero se hace con mucha felicidad",
-    "Tirando de Arquímedes para nivelar",
-    "Va tomando forma el edificio",
-    "Edificio llevado a altura máxima",
-    "Primeros trabajos sobre los triángulos de la cúpula",
-    "Parece que estoy haciendo TIE Fighter",
-    "Montando placas sobre la base de la cúpula",
-    "La cúpula va tomando forma",
-    "Cúpula cerrada",
-    "Abriendo las ventanas",
-    "Cúpula terminada en suelo",
-    "Terminando ventanas",
-    "Gran equipo para subir la cúpula",
-    "Emocionado con el resultado"
-  ];
+  <!-- Sección Contacto -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Para contactar, puedes escribirme a <a href="mailto:tuemail@dominio.com" style="color:#0ff;">tuemail@dominio.com</a></p>
+  </section>
 
-  const images = [];
-  for (let i = 0; i < numImages; i++) {
-    const img = document.createElement('img');
-    img.src = `fotos/como/bb8_${String(i + 1).padStart(2, '0')}.jpg`;
-    img.className = 'carousel-item';
-    track.appendChild(img);
-    images.push(img);
-  }
+  <script>
+    const track = document.getElementById('carouselTrack');
+    const caption = document.getElementById('carouselCaption');
+    const numImages = 15;
+    const angleStep = 360 / numImages;
+    let currentIndex = 0;
 
-  function updateCarousel() {
-    images.forEach((img, index) => {
-      const angle = angleStep * ((index - currentIndex + numImages) % numImages);
-      img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(500px)`;
+    const captions = [
+      "Qué ilusión empezar!! Calculando tamaños",
+      "El trabajo es duro pero se hace con mucha felicidad",
+      "Tirando de Arquímedes para nivelar",
+      "Va tomando forma el edificio",
+      "Edificio llevado a altura máxima",
+      "Primeros trabajos sobre los triángulos de la cúpula",
+      "Parece que estoy haciendo TIE Fighter",
+      "Montando placas sobre la base de la cúpula",
+      "La cúpula va tomando forma",
+      "Cúpula cerrada",
+      "Abriendo las ventanas",
+      "Cúpula terminada en suelo",
+      "Terminando ventanas",
+      "Gran equipo para subir la cúpula",
+      "Emocionado con el resultado"
+    ];
+
+    const images = [];
+    for (let i = 0; i < numImages; i++) {
+      const img = document.createElement('img');
+      img.src = `fotos/como/bb8_${String(i + 1).padStart(2, '0')}.jpg`;
+      img.className = 'carousel-item';
+      track.appendChild(img);
+      images.push(img);
+    }
+
+    function updateCarousel() {
+      images.forEach((img, index) => {
+        const angle = angleStep * ((index - currentIndex + numImages) % numImages);
+        img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(500px)`;
+      });
+      caption.textContent = captions[currentIndex];
+    }
+
+    function rotateCarousel(direction) {
+      currentIndex = (currentIndex + direction + numImages) % numImages;
+      updateCarousel();
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      rotateCarousel(1);
     });
-    caption.textContent = captions[currentIndex];
-  }
 
-  function rotateCarousel(direction) {
-    currentIndex = (currentIndex + direction + numImages) % numImages;
-    currentAngle += direction * angleStep;
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      rotateCarousel(-1);
+    });
+
     updateCarousel();
-  }
-
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    rotateCarousel(1);
-  });
-
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    rotateCarousel(-1);
-  });
-
-  updateCarousel();
-</script>
+  </script>
 
 </body>
 </html>
