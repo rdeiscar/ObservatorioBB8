@@ -82,11 +82,17 @@
 <body class="text-white bg-black garamond">
 
 <!-- Sección de presentación -->
-<section id="inicio" class="min-h-screen bg-[url('fondo.jpg')] bg-cover bg-center flex items-center justify-between px-10 py-32">
-  <div class="max-w-2xl">
+<section id="inicio" class="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="fondo.jpg" class="w-full h-full object-contain object-center" alt="Fondo observatorio" />
+  </div>
+  <div class="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-10">
+  <div class="max-w-2xl text-left text-white">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 zen-dots">Observatorio astronómico BB8</h1>
+    </div>
     <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white zen-dots">Observatorio astronómico BB8</h1>
   </div>
-  <div class="max-w-xl bg-black/70 p-6 rounded-xl shadow-lg">
+  <div class="max-w-xl bg-black/80 p-6 rounded-xl shadow-lg text-white text-lg leading-relaxed">
     <p class="text-lg leading-relaxed">
       Bajo el silencio del cielo, un sueño da sus primeras luces. Este observatorio no es solo una estructura: es un homenaje a la curiosidad, a la perseverancia y al asombro infinito que despierta el cosmos. Armado con la tenacidad que solo la pasión puede darnos he podido construirlo con mis propias manos. Te invito a conocer este viaje de luz y sombra, donde la ingeniería DIY se encuentra con la imaginación y el frikismo.
     </p>
