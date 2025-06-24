@@ -27,6 +27,7 @@
       height: 100%;
       width: 100%;
       position: relative;
+      transform: rotateY(0deg);
     }
     .carousel-item {
       position: absolute;
@@ -34,7 +35,6 @@
       left: 50%;
       transform-origin: center center -500px;
       backface-visibility: hidden;
-      transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(500px);
       border-radius: 1rem;
       box-shadow: 0 0 10px #000;
       max-width: 200px;
@@ -96,17 +96,25 @@
       const angleStep = 360 / numImages;
       let currentAngle = 0;
 
+      const images = [];
       for (let i = 0; i < numImages; i++) {
         const img = document.createElement('img');
         img.src = `fotos/como/bb8_${String(i + 1).padStart(2, '0')}.jpg`;
         img.className = 'carousel-item';
-        img.style.setProperty('--angle', `${i * angleStep}deg`);
         track.appendChild(img);
+        images.push(img);
+      }
+
+      function updateCarousel() {
+        images.forEach((img, index) => {
+          const angle = (360 / numImages) * index + currentAngle;
+          img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(500px)`;
+        });
       }
 
       function rotateCarousel(direction) {
         currentAngle += direction * angleStep;
-        track.style.transform = `rotateY(${currentAngle}deg)`;
+        updateCarousel();
       }
 
       document.getElementById('nextBtn').addEventListener('click', () => {
@@ -116,6 +124,8 @@
       document.getElementById('prevBtn').addEventListener('click', () => {
         rotateCarousel(1);
       });
+
+      updateCarousel();
     </script>
   </section>
 
@@ -139,3 +149,4 @@
 
 </body>
 </html>
+
