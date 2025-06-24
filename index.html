@@ -77,13 +77,25 @@
       box-shadow: 0 0 20px #0ff;
       transform: scale(1.05);
     }
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      z-index: -10;
+    }
   </style>
 </head>
 <body class="text-white bg-black garamond">
 
+<!-- Fondo general -->
+<img src="fondo.jpg" class="background-image" alt="Fondo observatorio" />
+
 <!-- Sección de presentación / INICIO -->
 <section id="inicio" class="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden border-b border-cyan-400">
-  <img src="fondo.jpg" class="w-full h-full object-contain object-center fixed top-0 left-0 z-0" alt="Fondo observatorio" />
   <div class="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-10">
     <div class="max-w-2xl text-left text-white">
       <h1 class="text-5xl md:text-6xl font-bold mb-6 zen-dots">Observatorio astronómico BB8</h1>
@@ -97,7 +109,7 @@
 </section>
 
 <!-- Sección Cómo se hizo -->
-<section id="como" class="py-40 px-6 bg-gray-950 border-b border-cyan-400">
+<section id="como" class="py-40 px-6 bg-gray-950/80 border-b border-cyan-400">
   <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Cómo se hizo</h2>
   <div class="relative carousel">
     <div class="carousel-track" id="carouselTrack"></div>
@@ -110,19 +122,19 @@
 </section>
 
 <!-- Sección Equipamiento -->
-<section id="equipamiento" class="py-40 px-6 bg-black border-b border-cyan-400">
+<section id="equipamiento" class="py-40 px-6 bg-black/90 border-b border-cyan-400">
   <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Equipamiento</h2>
   <p class="max-w-3xl mx-auto text-center text-lg">Aquí describirás los telescopios, cámaras, monturas y accesorios que utilizas en tu observatorio. También puedes añadir fotos y fichas técnicas.</p>
 </section>
 
 <!-- Sección Astrofotografía -->
-<section id="astrofotografia" class="py-40 px-6 bg-gray-950 border-b border-cyan-400">
+<section id="astrofotografia" class="py-40 px-6 bg-gray-950/80 border-b border-cyan-400">
   <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Astrofotografía</h2>
   <p class="max-w-3xl mx-auto text-center text-lg">En esta sección podrás ir añadiendo tus imágenes astronómicas favoritas, procesadas o en bruto, y quizá explicar un poco cómo las hiciste.</p>
 </section>
 
 <!-- Sección Contacto -->
-<section id="contacto" class="py-40 px-6 bg-black">
+<section id="contacto" class="py-40 px-6 bg-black/90">
   <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Contacto</h2>
   <p class="max-w-3xl mx-auto text-center text-lg">¿Tienes dudas, sugerencias o simplemente quieres saludar? Puedes escribirme a <a href="mailto:tuemail@dominio.com" class="text-cyan-300 underline">tuemail@dominio.com</a></p>
 </section>
@@ -189,3 +201,4 @@
 
 </body>
 </html>
+
