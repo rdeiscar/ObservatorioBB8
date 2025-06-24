@@ -30,9 +30,10 @@
     }
     .carousel-item {
       position: absolute;
-      width: 200px;
-      height: 300px;
-      object-fit: cover;
+      max-width: 200px;
+      max-height: 300px;
+      width: auto;
+      height: auto;
       top: 50%;
       left: 50%;
       transform-origin: center center -500px;
@@ -63,12 +64,16 @@
     <a href="#como" class="absolute bottom-10 text-blue-400 hover:underline text-lg">↓ Cómo se hizo</a>
   </section>
 
-  <!-- Cómo se hizo (Carrusel en noria ajustado) -->
+  <!-- Cómo se hizo (Carrusel en noria con botones) -->
   <section id="como" class="py-40 px-6 bg-gray-950">
     <h2 class="text-3xl font-bold text-center mb-10">Cómo se hizo</h2>
-    <div class="carousel">
+    <div class="relative carousel">
       <div class="carousel-track" id="carouselTrack">
-        <!-- Se generarán dinámicamente 13 imágenes -->
+        <!-- Imágenes dinámicas -->
+      </div>
+      <div class="flex justify-center mt-10 gap-6">
+        <button id="prevBtn" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-800">← Anterior</button>
+        <button id="nextBtn" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-800">Siguiente →</button>
       </div>
     </div>
     <p class="mt-16 max-w-3xl mx-auto text-center text-lg">
@@ -88,19 +93,14 @@
       }
 
       let angle = 0;
-      let isInCarousel = false;
 
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          isInCarousel = entry.isIntersecting;
-        });
-      }, { threshold: 0.5 });
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        angle += angleStep;
+        track.style.transform = `rotateY(${angle}deg)`;
+      });
 
-      observer.observe(track);
-
-      window.addEventListener('wheel', (e) => {
-        if (!isInCarousel) return;
-        angle += e.deltaY > 0 ? angleStep : -angleStep;
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        angle -= angleStep;
         track.style.transform = `rotateY(${angle}deg)`;
       });
     </script>
@@ -126,3 +126,4 @@
 
 </body>
 </html>
+
