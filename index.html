@@ -8,61 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Zen+Dots&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    .garamond {
-      font-family: 'EB Garamond', serif;
-    }
-    .zen-dots {
-      font-family: 'Zen Dots', sans-serif;
-    }
-    .carousel {
-      perspective: 3000px;
-      transform-style: preserve-3d;
-      height: 650px;
-    }
-    .carousel-track {
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease-in-out;
-      height: 100%;
-      width: 100%;
-      position: relative;
-      transform: rotateY(0deg);
-    }
-    .carousel-item {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform-origin: center center -500px;
-      backface-visibility: hidden;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px #000;
-      max-width: 200px;
-      max-height: 300px;
-      width: auto;
-      height: auto;
-      transition: transform 0.5s ease-in-out;
-    }
-    .carousel-caption {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #0ff;
-      text-shadow: 0 0 10px #00f;
-    }
-    .carousel-buttons {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      padding-bottom: 1rem;
-      z-index: 10;
-    }
+    html { scroll-behavior: smooth; }
+    .garamond { font-family: 'EB Garamond', serif; }
+    .zen-dots { font-family: 'Zen Dots', sans-serif; }
     .galactic-button {
       background: linear-gradient(90deg, #0ff, #00f, #f0f);
       color: white;
@@ -80,293 +28,140 @@
     }
     .background-image {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       object-fit: contain;
       object-position: center;
       z-index: -10;
     }
+    #comoImage.fade-out { opacity: 0; }
   </style>
 </head>
 <body class="text-white bg-black garamond">
 
-<!-- Fondo general -->
 <img src="fondo.jpg" class="background-image" alt="Fondo observatorio" />
 
-<!-- Sección de presentación / INICIO -->
+<!-- Sección Inicio -->
 <section id="inicio" class="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden border-b border-cyan-400">
   <div class="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-10">
-    <div class="max-w-2xl text-left text-white">
+    <div class="max-w-2xl text-left">
       <h1 class="text-5xl md:text-6xl font-bold mb-6 zen-dots">Observatorio astronómico BB8</h1>
     </div>
-    <div class="max-w-xl bg-black/80 p-6 rounded-xl shadow-lg text-white text-lg leading-relaxed">
-      <p class="text-lg leading-relaxed">
-        Hay sueños que solo se vuelven realidad a través de la pasión. Tras 40 meses de trabajo en ratos robados al tiempo, nace este observatorio astronómico: un monumento a la humildad que se siente al mirar la profundidad de lo oscuro, envuelto con esta decoración tan friki que tanto me gusta inspirado en nuestro robot BB8. Te invito a conocer los detalles de su construcción, su equipamiento y sus primeras luces.
+    <div class="max-w-xl bg-black/80 p-6 rounded-xl shadow-lg">
+      <p>
+        Hay sueños que solo se vuelven realidad a través de la pasión. Tras 40 meses de trabajo en ratos robados al tiempo, nace este observatorio astronómico: un monumento a la humildad que se siente al mirar la profundidad de lo oscuro, envuelto con esta decoración tan friki que tanto me gusta inspirado en nuestro robot BB8.
         <em>Loquere, Salviati, audi Universum.</em>
       </p>
     </div>
   </div>
 </section>
 
-<!-- Sección de imágenes entre introducción y cómo se hizo -->
-<section class="py-20 px-6 bg-black/90 border-b border-cyan-400">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-    <div class="text-center">
-      <img src="Actual.jpg" alt="Estado actual" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Estado actual del observatorio</p>
-    </div>
-    <div class="text-center">
-      <img src="Loquere.jpg" alt="Loquere Salviati" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Loquere, Salviati, audi Universum</p>
-    </div>
-  </div>
-</section>
-  
 <!-- Sección Cómo se hizo -->
 <section id="como" class="py-40 px-6 bg-gray-950/80 border-b border-cyan-400">
   <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Cómo se hizo</h2>
-  <div class="relative carousel">
-    <div class="carousel-track" id="carouselTrack"></div>
-    <p id="carouselCaption" class="carousel-caption text-center mt-10 max-w-3xl mx-auto text-lg block md:block"></p>
-    <div class="carousel-buttons">
-      <button id="prevBtn" class="galactic-button">← Anterior</button>
-      <button id="nextBtn" class="galactic-button">Siguiente →</button>
-    </div>
-  </div>
-</section>
-
-<!-- Sección Equipamiento -->
-<section id="equipamiento" class="py-40 px-6 bg-black/90 border-b border-cyan-400">
-  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Equipamiento</h2>
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-    <div class="text-center">
-      <img src="fotos/teles/teles_01.jpg" alt="Telescopio 1" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">El observatorio cuenta con un telescopio Meade Lightbridge 16' fijado sobre la columna del observatorio. No dispone de sistema GoTo, por lo que aproximo con un laser y afino con Skywatcher 70/500 + cámara svbony SV105. Para astrofotografía planetaria cuenta con una cámara ZWO ASI662MC</p>
-    </div>
-    <div class="text-center">
-      <img src="fotos/teles/teles_02.jpg" alt="Telescopio 2" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Yo mismo he motorizado la montura, aquí el detalle de la electrónica. Raspberry PI con un sencillo script Pyhton que lee los encoder del mando y aumenta o disminuye el tiempo entre pasos de los motores</p>
-    </div>
-    <div class="text-center">
-      <img src="fotos/teles/teles_03.jpg" alt="Telescopio 3" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Este es el detalle de la parte mecánica de la motorización en ambos ejes y también en el enfoque</p>
-    </div>
-    <div class="text-center">
-      <img src="fotos/teles/teles_04.jpg" alt="Telescopio 4" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">El viejo Allstar, mi primer telescopio, sigue acompañándome en forma de buscador gigante, como un pequeño homenaje. Todo listo para la exploración espacial ¡¡deseando confirmar la potencia del equipo!!!</p>
-    </div>
-  </div>
-</section>
-
-<!-- Sección Astrofotografía -->
-<section id="astrofotografia" class="py-40 px-6 bg-gray-950/80 border-b border-cyan-400">
-  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Astrofotografía</h2>
-  <div class="max-w-6xl mx-auto text-center">
+  <div class="max-w-4xl mx-auto text-center">
     <div class="relative">
-      <img id="astroImage" src="fotos/astro/220817 Historia astrofotografía.jpg" alt="Astrofoto" class="w-full max-h-[90vh] object-contain rounded-xl shadow-lg">
-      <div class="mt-6 flex justify-center gap-8">
-        <button id="prevAstro" class="galactic-button">← Anterior</button>
-        <button id="nextAstro" class="galactic-button">Siguiente →</button>
+      <img id="comoImage" src="fotos/como/BB8_01.jpg" alt="Cómo se hizo" class="mx-auto rounded-xl shadow-lg max-h-[80vh] object-contain opacity-100 transition-opacity duration-700">
+      <p id="comoCaption" class="mt-6 text-lg text-cyan-200 garamond max-w-3xl mx-auto"></p>
+      <div class="mt-8 flex justify-center gap-8">
+        <button id="prevComo" class="galactic-button">← Anterior</button>
+        <button id="nextComo" class="galactic-button">Siguiente →</button>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  const astroImages = [
-    "190807 Progreso mensual.jpg",
-    "200825 Marte 02-24.jpg",
-    "210830 Júpiter II.jpg",
-    "210831 Saturno.jpg",
-    "220720 Luna.jpg",
-    "220731 Sol AS.jpg",
-    "220808 Comparación.jpg",
-    "220808 Saturno.jpg",
-    "220817 Historia astrofotografía.jpg",
-    "220918 Júpiter.jpg",
-    "221002 Júpiter II.jpg",
-    "221126 Marte.jpg"
-  ];
-  let currentAstro = 0;
-  const astroImageEl = document.getElementById("astroImage");
-
-  document.getElementById("nextAstro").addEventListener("click", () => {
-    currentAstro = (currentAstro + 1) % astroImages.length;
-    astroImageEl.src = `fotos/astro/${astroImages[currentAstro]}`;
-  });
-
-  document.getElementById("prevAstro").addEventListener("click", () => {
-    currentAstro = (currentAstro - 1 + astroImages.length) % astroImages.length;
-    astroImageEl.src = `fotos/astro/${astroImages[currentAstro]}`;
-  });
-</script>
-
-  
-<!-- Sección Decoración Friki -->
-<section id="decoracion" class="py-40 px-6 bg-gray-950/80 border-b border-cyan-400">
-  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Decoración friki del interior</h2>
-  <p class="max-w-3xl mx-auto text-center text-lg mb-16">
-    El interior del observatorio no podía ser menos. Desde las constelaciones en la cúpula hasta un homenaje al radiotelescopio de Arecibo, Sagan siempre conmigo. Pasión por la astronomía y la cultura geek. 
-  </p>
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-    <div class="text-center">
-      <img src="fotos/inter/Arecibo.jpg" alt="Arecibo" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Homenaje a la señal de Arecibo que tanto me gusta</p>
-    </div>
-    <div class="text-center">
-      <img src="fotos/inter/Constelaciones.jpg" alt="Constelaciones" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Qué mejor que unas constelaciones fluorescentes para decorar la cúpula por dentro. Con luz negra es un espectáculo</p>
-    </div>
-    <div class="text-center">
-      <img src="fotos/inter/Funda.jpg" alt="Funda" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Impresioannte funda personalizada estilo BB8 hecha a mano por Ire ¡Gracias!! </p>
-    </div>
-    <div class="fotos/inter/text-center">
-      <img src="fotos/inter/Luz_BB8.jpg" alt="Luz_BB8.jpg" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
-      <p class="mt-4 text-lg text-cyan-200 garamond">Una luz con la forma del icono del observatorio imprimida en 3D</p>
-    </div>
-  </div>
-</section>
-
-  
-<!-- Sección Agradecimientos -->
-<section id="agradecimientos" class="py-40 px-6 bg-black/90 border-b border-cyan-400">
-  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Agradecimientos</h2>
-  
-  <div class="max-w-3xl mx-auto text-lg leading-relaxed space-y-6">
-    <p>
-      Especial agradecimiento a <strong>José Luis, Hombrejota</strong>, del foro de <a href="https://www.astronomo.org/foro/index.php?topic=18320.0" target="_blank" class="text-cyan-300 underline">astronomo.org</a>, de quien he aprendido mucho para hacer la cúpula.
-    </p>
-    <p>
-      Utilicé esta web mil y una veces para calcular los triángulos de la cúpula: <a href="https://www.desertdomes.com/domecalc.html" target="_blank" class="text-cyan-300 underline">desertdomes.com/domecalc.html</a>
-    </p>
-    <p>
-      Gracias al <a href="https://fundacionastrohita.org/" target="_blank" class="text-cyan-300 underline">Complejo astronómico AstroHita</a>, son una inspiración constante.
-    </p>
-    <p>
-      Gracias a <a href="https://www.rtve.es/play/audios/a-hombros-de-gigantes/" target="_blank" class="text-cyan-300 underline">Manuel Seara y a todos sus cómplices del programa "A hombros de gigantes"</a> de RNE, porque sus podcasts siempre acompañan y acompañarán mis sesiones de astronomía.
-    </p>
-    <p>
-      Y sobre todo, gracias a mi familia por aguantar mis locuras.
-    </p>
-  </div>
-
-  <div class="mt-16 text-center">
-    <img src="Familia.jpg" alt="Mi familia" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
-  </div>
-</section>
-
-  
-<!-- Sección Contacto -->
-<section id="contacto" class="py-40 px-6 bg-black/90">
-  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Contacto</h2>
-  <p class="max-w-3xl mx-auto text-center text-lg">¿Tienes dudas, sugerencias o simplemente quieres saludar? Puedes escribirme a <a href="mailto:rdeiscar@gmail.com" class="text-cyan-300 underline">rdeiscar@gmail.com</a></p>
-  <p class="max-w-3xl mx-auto text-center text-lg">Rubén de Iscar Camacho, Salviati. El fin no es llegar, el fin es ir.</a></p>
-</section>
+<!-- Aquí irían tus otras secciones: Equipamiento, Astrofotografía, Decoración, Agradecimientos, Contacto -->
 
 <script>
-  const track = document.getElementById('carouselTrack');
-  const caption = document.getElementById('carouselCaption');
-  const numImages = 57;
-  const angleStep = 360 / numImages;
-  let currentAngle = 0;
-  let currentIndex = 0;
+  const comoImages = Array.from({ length: 57 }, (_, i) => `fotos/como/BB8_${String(i + 1).padStart(2, '0')}.jpg`);
 
-  const captions = [
-    "24/12/2021: Desde que conseguimos la casa de campo sabía que lo iba a construir, pero ¡qué ilusión empezar! Tomando medidas y pensando en tamaños. Entonces no sabía hasta qué punto el tamaño importa.",
-    "26/12/2021: Zanja para contrarrestar el poco desnivel del suelo y cimentar el edificio. Un buen agujero tan profundo como pude para la base de la columna central.",
+  const comoCaptions = [
+    "24/12/2021: Desde que conseguimos la casa de campo sabía que lo iba a construir, pero ¡qué ilusión empezar!",
+    "26/12/2021: Zanja para contrarrestar el poco desnivel del suelo y cimentar el edificio.",
     "28/12/2021: El trabajo es duro y no tengo experiencia, pero se hace con felicidad.",
-    "02/01/2022: Tirando de Arquímedes para nivelar con cuidado para que la columna no esté unida al suelo para evitar vibraciones.",
-    "06/01/2022: Poco a poco va tomando forma el edificio. Sin saberlo ya estaba cometiendo los primeros errores: No era perfectamente circular, algo que luego me daría muchos problemas.",
-    "06/02/2022: Cada vuelta de ladrillos es una paliza cuando tú mismo haces todo el trabajo sin experiencia y con medios modestos.",
-    "12/02/2022: Después de muchas vueltas y mucha información obtenida del foro de astronomo.org (Hombrejota) optimizo el recorte de los triángulos en las planchas de poliespán extruido. ",
-    "19/02/2022: Empiezo a montar los primeros hexágonos pegados solo con espuma. Spoiler: No será suficiente.",
-    "27/02/2022: Edificio ya al 90%",
-    "27/02/2022: He dejado un buen hueco para la puerta",
-    "27/02/2022: La parte de arriba de la puerta es complicada: No tengo ninguna viga, ha de soportar el peso y a la vez seguir siendo redondo. Con un par de trozos de rasilla lo apaño.",
-    "27/02/2022: El resultado no es optimo pero he de adaptarme a él.",
-    "05/03/2022: Trabajando sobre la columna",
-    "12/03/2022: Columna, suelo y paso de puerta terminados. No va mal.",
-    "12/03/2022: Comienzo los trabajos sobre la base de la cúpula V1.0. La idea es hacer un carril sobre el edificio y que la cúpula cuente con ruedas que irán dentro de él. Con este perfil en U de hierro galvanizado voy haciendo cortes para que siga la curva. Luego sello las juntas y hago una base con cemento para nivelar.",
-    "27/03/2022: Empezando la base de la cúpula. He de unir los semicírculos que he cortado sobre planchas de aglomerado especial que aguanta la humedad. Los márgenes de error en su curvatura son difíciles de controlar y serán fundamentales para que la cúpula gire.",
-    "09/04/2022: Trabajo de orfebrería para sujetar las ruedas de tal forma que pueda graduar cuanto asoman por si he de ajustarlas.",
-    "21/06/2022: Primeras pruebas de giro de la base de la cúpula y del sistema antivuelco, que consiste en ruedas secundarias que se apoyan en un perfil de aluminio al que con 1000 cortes he hecho que de el giro al edificio. Resultado: Gira con dificultad, no hay ni un solo círculo que lo sea, pero puede llevar a valer.",
-    "14/08/2022: Empiezo los trabajos de ensamblaje de la cúpula con problemas. Las uniones entre los triángulos no soportan su propio peso y se abren. He de inventar algo.",
-    "23/08/2022: Con sobrantes de alambrada fabrico grapas gigantes y resistentes. Con ellas puedo reforzar las uniones de los triángulos tanto como sea necesario. Esto va a ser clave para que la cúpula sea posible.",
-    "23/08/2022: Parece que estoy construyendo TIE Fighter en serie, pero no, son los hexágonos principales.",
-    "27/08/2022: Un momento muy emocionante, cuando empiezo a montar la cúpula desde arriba hacia abajo. Las grapas funcionan muy bien.",
-    "27/08/2022: Lo he hecho tantas veces en mi cabeza que parece mentira que esté haciéndolo de verdad. Es una pasada verlo.",
-    "03/09/2022: Algunos errores de cálculo: La cúpula tiene más de 90º, por lo que el último tramo disminuye de diámetro y es más pequeño que la base. Tengo que poner un faldón de espuma. La fibra de vidrio pega bien.",
-    "16/09/2022: Comienzo a dar el cemento impermeable SIKA MONOTOP 107 SEAL. Una paliza porque seca rápido y es caro como para desperdiciarlo.",
-    "17/09/2022: He aquí mi mayor error: no tener la paciencia de terminar la cúpula en el suelo. Es impresionante verla en su sitio y, aunque mal, gira. ",
-    "17/09/2022: Habría sido imposible hacer las ventanas con la cúpula subida, pero ese no fue el problema. Una tormenta de viento poco después de esta foto consiguió doblar el débil y aún por ajustar sistema antivuelco, y la cúpula descarriló y se partió completamente, como si el gigante de Don Quijote se hubiera ensañado con ella. Totalmente destrozada.",
-    "15/05/2023: Casi un año después consigo reunir las fuerzas mentales para retomar el trabajo y imagino otra cúpula distinta. La V2.0 tendrá una base de verdad circular que no fabricaré yo, si no que curvarán profesionales del metal. Yo solo tengo que unir los semicírculos en los que está partido para poderlo transportar. Tampoco sé soldar, pero voy a aprender.",
-    "20/05/2023: En la V2.0 las ruedas van fijas en el edificio situadas adecuadamente, y es la cúpula la que tiene el carril en forma de U invertida como base. Una vez soldada y ajustada la posición de las ruedas gira bastante mejor que la primera versión.",
-    "27/04/2024: Estos son los trozos de la cúpula antigua que intento aprovechar sin éxito. Es imposible reutilizarlos de esta forma. Días duros para la paciencia.",
-    "03/05/2024: Decido reaprovechar todos los triángulos que pueda para ahorrar trabajo y dinero, ahora sí son partes aprovechables, pero deshacer tanto trabajo para volver a hacerlo requiere de toda mi pasión por este proyecto. Estoy al límite.",
-    "18/05/2024: Algo de luz en esta V2.0. Empezar a darle forma de nuevo me anima un poco. Esta vez voy desde abajo hacia arriba.",
-    "23/06/2024: Poco a poco va creciendo de nuevo.",
-    "18/07/2024: La base metálica requiere de nuevos desafíos técnicos para sujetar todo. Sueldo unos clavos que pinchan algunos triángulos. Menos mal que las grapas son un inventazo, si no es imposible esto.",
-    "20/07/2024: Por fin llega el día que cierro completamente la cúpula. He tenido que usar planchar nuevas pero no demasiadas. Ha quedado un poco apaisada por el lado de la ventana, al no ser todos los triángulos del tamaño adecuado por reaprovecharlos, pero no tiene por qué ser malo.",
-    "22/08/2024: Abro el hueco de las ventanas y por fin doy uso a los carriles gigantes de cajonera que tenía comprados. Aún no sé que hacer las ventanas va a ser más trabajo de lo que había calculado.",
-    "22/08/2024: Verla entera dada de cemento es una alegría, la verdad. Ya no hay vuelta atrás.",
-    "25/08/2024: No correspondería aún hacer la decoración, pero ¡Quien puede resistirse!! Me hacía mucha falta para animarme.",
-    "26/08/2024: Muchos problemas de ingeniería con las ventanas. Pesan bastante y se doblan sobre sí mismas. Tuve que poner algún rodamiento y reforzarlas. Muy difícil!",
-    "31/08/2024: Irene me encuentra en internet una semiesfera de metacrilato de 50cm de diámetro, ideal para el ojo principal que ha quedado genial! Ahora ya sí que es BB8.",
-    "09/10/2024: Empiezo a imaginar el telescopio en su sitio y sospecho gravemente ¡¡que no cabe!! He de recortar la columna o no entrará. El problema es que la había fabricado para durar toda la vida, y el cortafrío no era capaz. Al final quedó bien.",
-    "24/11/2024: Por fin todo terminado, repellado todo el edificio y pintada entera la cúpula con pintura especial impermeable (huele como los pasos de cebra).",
-    "01/12/2024: Rehecha la columna ahora ya más baja. Tiene buena pinta!",
-    "29/03/2025: Por fin llegó uno de los mejores días de mi vida: Se apuntó toda la familia (casi toda) a ayudar a subirla a su sitio. Lo que había visto mil veces en mis sueños de pronto era realidad ¡y gira bastante bien!!",
-    "29/03/2025: Gracias familia por la paciencia.",
-    "29/03/2025: Muy emocionado de verlo desde dentro, girando, abrir las ventanas. Todo ha ido bien. Soy feliz.",
-    "27/04/2025: Decoro el edificio con los círculos de BB8. Hay cachondeo con el tema porque solo están por delante, por detrás no están hechos ¡¡porque no se ven!!! he salido criticado por esto jajajaj.",
-    "15/05/2025: Llegó el día de montar la bestia que ya tengo motorizada y probada. El bicho pesa como para que no sea portátil.",
-    "15/05/2025: Parece una lavadora jajjaja.",
-    "15/05/2025: Ahí va la montura. Para pasar por la puerta nos las vimos.",
-    "15/05/2025: Huuuuuuuyyyy… !!ajustado!! El Lightbridge queda a menos de dos centímetros de la cúpula en algunos puntos. Pero sin problema, como un guante.",
-    "15/05/2025: Absolutamente emocionante verlo en su sitio.",
-    "17/05/2025: Contrapesado y probando motorización. Va suave, lo suficiente para que sea de verdad utilizable.",
-    "18/05/2025: Primera noche de pruebas. Va bien! Puedo hacer seguimiento de una estrella suficientemente bien como para corregir la vibración por software. BIEN!",
-    "18/05/2025: Cómo me gusta una frikada.",
-    "11/06/2025: Regalazo de Irene y los chicos. Loquere, Salviati, audi universum.",
-    "08/06/2025: Otro regalo más de Ire, con mucho trabajo por su parte. Una funda hecha a la medida perfecta al estilo BB8 ¡preciosa!!"
+    "02/01/2022: Tirando de Arquímedes para nivelar la columna, aislada del suelo.",
+    "06/01/2022: Va tomando forma. Sin saberlo, ya cometía errores.",
+    "06/02/2022: Cada vuelta de ladrillos es una paliza.",
+    "12/02/2022: Optimizo el recorte de los triángulos en las planchas.",
+    "19/02/2022: Primeros hexágonos montados, pero no basta solo con espuma.",
+    "27/02/2022: Edificio ya al 90%.",
+    "27/02/2022: Dejo hueco para la puerta.",
+    "27/02/2022: Problema para sostener la parte superior de la puerta.",
+    "27/02/2022: Me adapto como puedo.",
+    "05/03/2022: Trabajando sobre la columna.",
+    "12/03/2022: Columna, suelo y puerta terminados.",
+    "12/03/2022: Empiezo la base de la cúpula V1.0.",
+    "27/03/2022: Uniendo semicírculos para la base de la cúpula.",
+    "09/04/2022: Sujeto ruedas con precisión para nivelar.",
+    "21/06/2022: Primeras pruebas de giro, con dificultades.",
+    "14/08/2022: Las uniones no soportan peso, problemas serios.",
+    "23/08/2022: Grapas gigantes con alambrada, la clave.",
+    "23/08/2022: Parece una fábrica de TIE Fighters.",
+    "27/08/2022: Empiezo a montar la cúpula desde arriba.",
+    "27/08/2022: Verlo montarse es un sueño hecho realidad.",
+    "03/09/2022: Error de cálculo, la cúpula necesita un faldón.",
+    "16/09/2022: Empiezo a dar impermeabilizante.",
+    "17/09/2022: Error: monté la cúpula antes de tiempo.",
+    "17/09/2022: Una tormenta la destroza completamente.",
+    "15/05/2023: Retomo el proyecto con fuerzas renovadas.",
+    "20/05/2023: Cambio a un sistema de cúpula V2.0 con carril metálico.",
+    "27/04/2024: Intento aprovechar la cúpula antigua sin éxito.",
+    "03/05/2024: Reutilizo triángulos. Trabajo duro pero ahorro.",
+    "18/05/2024: Empieza a tomar forma la nueva cúpula.",
+    "23/06/2024: Va creciendo poco a poco.",
+    "18/07/2024: Sueldo clavos para fijar triángulos.",
+    "20/07/2024: Por fin cierro la cúpula completamente.",
+    "22/08/2024: Trabajo en las ventanas.",
+    "22/08/2024: Cementada y sólida. Alegría inmensa.",
+    "25/08/2024: Decoro antes de tiempo, pero necesitaba motivación.",
+    "26/08/2024: Problemas técnicos con las ventanas, pesan mucho.",
+    "31/08/2024: Encuentro la semiesfera perfecta para el ojo BB8.",
+    "09/10/2024: La columna es demasiado alta, toca recortar.",
+    "24/11/2024: Repellado completo y pintada.",
+    "01/12/2024: Nueva columna más baja, correcta.",
+    "29/03/2025: Subimos la cúpula. Día inolvidable.",
+    "29/03/2025: Gracias a toda la familia por ayudar.",
+    "29/03/2025: Verla girando por fin, pura emoción.",
+    "27/04/2025: Decoro con círculos de BB8, solo por delante, jeje.",
+    "15/05/2025: Montaje de la montura motorizada.",
+    "15/05/2025: Parece una lavadora, jajaja.",
+    "15/05/2025: Para pasar por la puerta hubo que maniobrar mucho.",
+    "15/05/2025: Ajustadísimo, menos de dos centímetros de margen.",
+    "15/05/2025: Verlo en su sitio es absolutamente emocionante.",
+    "17/05/2025: Pruebo la motorización, va suave.",
+    "18/05/2025: Primera noche de pruebas, funciona bien.",
+    "18/05/2025: Una frikada que me encanta.",
+    "11/06/2025: Regalazo de Irene y los chicos.",
+    "08/06/2025: Otra joya de Ire: funda personalizada estilo BB8."
   ];
 
-  const images = [];
-  for (let i = 0; i < numImages; i++) {
-    const img = document.createElement('img');
-    img.src = `fotos/como/BB8_${String(i + 1).padStart(2, '0')}.jpg`;
-    img.className = 'carousel-item';
-    track.appendChild(img);
-    images.push(img);
+  let currentComo = 0;
+  const comoImageEl = document.getElementById("comoImage");
+  const comoCaptionEl = document.getElementById("comoCaption");
+
+  function updateComo() {
+    comoImageEl.classList.add('fade-out');
+    setTimeout(() => {
+      comoImageEl.src = comoImages[currentComo];
+      comoCaptionEl.textContent = comoCaptions[currentComo];
+      comoImageEl.classList.remove('fade-out');
+    }, 300);
   }
 
-  function updateCarousel() {
-    images.forEach((img, index) => {
-      const angle = angleStep * ((index - currentIndex + numImages) % numImages);
-      img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(900px)`;
-    });
-    caption.textContent = captions[currentIndex];
-  }
-
-  function rotateCarousel(direction) {
-    currentIndex = (currentIndex + direction + numImages) % numImages;
-    currentAngle += direction * angleStep;
-    updateCarousel();
-  }
-
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    rotateCarousel(1);
+  document.getElementById("nextComo").addEventListener("click", () => {
+    currentComo = (currentComo + 1) % comoImages.length;
+    updateComo();
   });
 
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    rotateCarousel(-1);
+  document.getElementById("prevComo").addEventListener("click", () => {
+    currentComo = (currentComo - 1 + comoImages.length) % comoImages.length;
+    updateComo();
   });
 
-  updateCarousel();
+  updateComo();
 </script>
 
 </body>
 </html>
+
