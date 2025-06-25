@@ -18,7 +18,7 @@
       font-family: 'Zen Dots', sans-serif;
     }
     .carousel {
-      perspective: 1200px;
+      perspective: 2000px;
       transform-style: preserve-3d;
       height: 650px;
     }
@@ -346,7 +346,7 @@
   function updateCarousel() {
     images.forEach((img, index) => {
       const angle = angleStep * ((index - currentIndex + numImages) % numImages);
-      img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(1200px)`;
+      img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(900px)`;
     });
     caption.textContent = captions[currentIndex];
   }
