@@ -41,17 +41,31 @@
 
 <img src="fondo.jpg" class="background-image" alt="Fondo observatorio" />
 
-<!-- Sección Inicio -->
+<!-- Sección de presentación / INICIO -->
 <section id="inicio" class="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden border-b border-cyan-400">
   <div class="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-10">
-    <div class="max-w-2xl text-left">
+    <div class="max-w-2xl text-left text-white">
       <h1 class="text-5xl md:text-6xl font-bold mb-6 zen-dots">Observatorio astronómico BB8</h1>
     </div>
-    <div class="max-w-xl bg-black/80 p-6 rounded-xl shadow-lg">
-      <p>
-        Hay sueños que solo se vuelven realidad a través de la pasión. Tras 40 meses de trabajo en ratos robados al tiempo, nace este observatorio astronómico: un monumento a la humildad que se siente al mirar la profundidad de lo oscuro, envuelto con esta decoración tan friki que tanto me gusta inspirado en nuestro robot BB8.
+    <div class="max-w-xl bg-black/80 p-6 rounded-xl shadow-lg text-white text-lg leading-relaxed">
+      <p class="text-lg leading-relaxed">
+        Hay sueños que solo se vuelven realidad a través de la pasión. Tras 40 meses de trabajo en ratos robados al tiempo, nace este observatorio astronómico: un monumento a la humildad que se siente al mirar la profundidad de lo oscuro, envuelto con esta decoración tan friki que tanto me gusta inspirado en nuestro robot BB8. Te invito a conocer los detalles de su construcción, su equipamiento y sus primeras luces.
         <em>Loquere, Salviati, audi Universum.</em>
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de imágenes entre introducción y cómo se hizo -->
+<section class="py-20 px-6 bg-black/90 border-b border-cyan-400">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <div class="text-center">
+      <img src="Actual.jpg" alt="Estado actual" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Estado actual del observatorio</p>
+    </div>
+    <div class="text-center">
+      <img src="Loquere.jpg" alt="Loquere Salviati" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Loquere, Salviati, audi Universum</p>
     </div>
   </div>
 </section>
@@ -71,7 +85,134 @@
   </div>
 </section>
 
-<!-- Aquí irían tus otras secciones: Equipamiento, Astrofotografía, Decoración, Agradecimientos, Contacto -->
+<!-- Sección Equipamiento -->
+<section id="equipamiento" class="py-40 px-6 bg-black/90 border-b border-cyan-400">
+  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Equipamiento</h2>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div class="text-center">
+      <img src="fotos/teles/teles_01.jpg" alt="Telescopio 1" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">El observatorio cuenta con un telescopio Meade Lightbridge 16' fijado sobre la columna del observatorio. No dispone de sistema GoTo, por lo que aproximo con un laser y afino con Skywatcher 70/500 + cámara svbony SV105. Para astrofotografía planetaria cuenta con una cámara ZWO ASI662MC</p>
+    </div>
+    <div class="text-center">
+      <img src="fotos/teles/teles_02.jpg" alt="Telescopio 2" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Yo mismo he motorizado la montura, aquí el detalle de la electrónica. Raspberry PI con un sencillo script Pyhton que lee los encoder del mando y aumenta o disminuye el tiempo entre pasos de los motores</p>
+    </div>
+    <div class="text-center">
+      <img src="fotos/teles/teles_03.jpg" alt="Telescopio 3" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Este es el detalle de la parte mecánica de la motorización en ambos ejes y también en el enfoque</p>
+    </div>
+    <div class="text-center">
+      <img src="fotos/teles/teles_04.jpg" alt="Telescopio 4" class="mx-auto rounded-xl shadow-lg max-h-96 object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">El viejo Allstar, mi primer telescopio, sigue acompañándome en forma de buscador gigante, como un pequeño homenaje. Todo listo para la exploración espacial ¡¡deseando confirmar la potencia del equipo!!!</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Astrofotografía -->
+<section id="astrofotografia" class="py-40 px-6 bg-gray-950/80 border-b border-cyan-400">
+  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Astrofotografía</h2>
+  <div class="max-w-6xl mx-auto text-center">
+    <div class="relative">
+      <img id="astroImage" src="fotos/astro/220817 Historia astrofotografía.jpg" alt="Astrofoto" class="w-full max-h-[90vh] object-contain rounded-xl shadow-lg">
+      <div class="mt-6 flex justify-center gap-8">
+        <button id="prevAstro" class="galactic-button">← Anterior</button>
+        <button id="nextAstro" class="galactic-button">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const astroImages = [
+    "190807 Progreso mensual.jpg",
+    "200825 Marte 02-24.jpg",
+    "210830 Júpiter II.jpg",
+    "210831 Saturno.jpg",
+    "220720 Luna.jpg",
+    "220731 Sol AS.jpg",
+    "220808 Comparación.jpg",
+    "220808 Saturno.jpg",
+    "220817 Historia astrofotografía.jpg",
+    "220918 Júpiter.jpg",
+    "221002 Júpiter II.jpg",
+    "221126 Marte.jpg"
+  ];
+  let currentAstro = 0;
+  const astroImageEl = document.getElementById("astroImage");
+
+  document.getElementById("nextAstro").addEventListener("click", () => {
+    currentAstro = (currentAstro + 1) % astroImages.length;
+    astroImageEl.src = `fotos/astro/${astroImages[currentAstro]}`;
+  });
+
+  document.getElementById("prevAstro").addEventListener("click", () => {
+    currentAstro = (currentAstro - 1 + astroImages.length) % astroImages.length;
+    astroImageEl.src = `fotos/astro/${astroImages[currentAstro]}`;
+  });
+</script>
+
+  
+<!-- Sección Decoración Friki -->
+<section id="decoracion" class="py-40 px-6 bg-gray-950/80 border-b border-cyan-400">
+  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Decoración friki del interior</h2>
+  <p class="max-w-3xl mx-auto text-center text-lg mb-16">
+    El interior del observatorio no podía ser menos. Desde las constelaciones en la cúpula hasta un homenaje al radiotelescopio de Arecibo, Sagan siempre conmigo. Pasión por la astronomía y la cultura geek. 
+  </p>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div class="text-center">
+      <img src="fotos/inter/Arecibo.jpg" alt="Arecibo" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Homenaje a la señal de Arecibo que tanto me gusta</p>
+    </div>
+    <div class="text-center">
+      <img src="fotos/inter/Constelaciones.jpg" alt="Constelaciones" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Qué mejor que unas constelaciones fluorescentes para decorar la cúpula por dentro. Con luz negra es un espectáculo</p>
+    </div>
+    <div class="text-center">
+      <img src="fotos/inter/Funda.jpg" alt="Funda" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Impresioannte funda personalizada estilo BB8 hecha a mano por Ire ¡Gracias!! </p>
+    </div>
+    <div class="fotos/inter/text-center">
+      <img src="fotos/inter/Luz_BB8.jpg" alt="Luz_BB8.jpg" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
+      <p class="mt-4 text-lg text-cyan-200 garamond">Una luz con la forma del icono del observatorio imprimida en 3D</p>
+    </div>
+  </div>
+</section>
+
+  
+<!-- Sección Agradecimientos -->
+<section id="agradecimientos" class="py-40 px-6 bg-black/90 border-b border-cyan-400">
+  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Agradecimientos</h2>
+  
+  <div class="max-w-3xl mx-auto text-lg leading-relaxed space-y-6">
+    <p>
+      Especial agradecimiento a <strong>José Luis, Hombrejota</strong>, del foro de <a href="https://www.astronomo.org/foro/index.php?topic=18320.0" target="_blank" class="text-cyan-300 underline">astronomo.org</a>, de quien he aprendido mucho para hacer la cúpula.
+    </p>
+    <p>
+      Utilicé esta web mil y una veces para calcular los triángulos de la cúpula: <a href="https://www.desertdomes.com/domecalc.html" target="_blank" class="text-cyan-300 underline">desertdomes.com/domecalc.html</a>
+    </p>
+    <p>
+      Gracias al <a href="https://fundacionastrohita.org/" target="_blank" class="text-cyan-300 underline">Complejo astronómico AstroHita</a>, son una inspiración constante.
+    </p>
+    <p>
+      Gracias a <a href="https://www.rtve.es/play/audios/a-hombros-de-gigantes/" target="_blank" class="text-cyan-300 underline">Manuel Seara y a todos sus cómplices del programa "A hombros de gigantes"</a> de RNE, porque sus podcasts siempre acompañan y acompañarán mis sesiones de astronomía.
+    </p>
+    <p>
+      Y sobre todo, gracias a mi familia por aguantar mis locuras.
+    </p>
+  </div>
+
+  <div class="mt-16 text-center">
+    <img src="Familia.jpg" alt="Mi familia" class="mx-auto rounded-xl shadow-lg max-h-[70vh] object-contain">
+  </div>
+</section>
+
+  
+<!-- Sección Contacto -->
+<section id="contacto" class="py-40 px-6 bg-black/90">
+  <h2 class="text-3xl font-bold text-center mb-10 zen-dots text-cyan-400">Contacto</h2>
+  <p class="max-w-3xl mx-auto text-center text-lg">¿Tienes dudas, sugerencias o simplemente quieres saludar? Puedes escribirme a <a href="mailto:rdeiscar@gmail.com" class="text-cyan-300 underline">rdeiscar@gmail.com</a></p>
+  <p class="max-w-3xl mx-auto text-center text-lg">Rubén de Iscar Camacho, Salviati. El fin no es llegar, el fin es ir.</a></p>
+</section>
 
 <script>
   const comoImages = Array.from({ length: 57 }, (_, i) => `fotos/como/BB8_${String(i + 1).padStart(2, '0')}.jpg`);
