@@ -346,7 +346,7 @@
   function updateCarousel() {
     images.forEach((img, index) => {
       const angle = angleStep * ((index - currentIndex + numImages) % numImages);
-      img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(500px)`;
+      img.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(1200px)`;
     });
     caption.textContent = captions[currentIndex];
   }
